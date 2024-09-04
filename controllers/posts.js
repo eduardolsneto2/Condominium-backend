@@ -1,29 +1,13 @@
 import Post from "../models/Post.js";
 
-/**
- * @route POST v1/auth/register
- * @desc Registers a user
- * @access Public
- */
 export async function Register(req, res) {
-    // get required variables from request body
-    // using es6 object destructing
     const { title, text, type } = req.body;
     try {
-        // create an instance of a user
         const newUPost = new Post({
             title,
             text,
             type,
         });
-        // Check if user already exists
-        // const existingPost = await Post.findOne({ text });
-        // if (existingPost)
-        //     return res.status(400).json({
-        //         status: "failed",
-        //         data: [],
-        //         message: "It seems you already have an account, please log in instead.",
-        //     });
         const savedPost = await newUPost.save(); // save new user into the database
         console.log(savedPost);
         // const { password,...user_data } = savedUser;
